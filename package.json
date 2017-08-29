@@ -1,35 +1,36 @@
 {
-    "name"          : "call-dir",
-    "version"       : "0.0.1",
-    "keywords"      : [ "callback", "directory", "require", "load", "multiple", "files" ],
-    "description"   : "Loads files from a directory and executes a callback for each",
-
-    "author"        : "Łaniewski Bartosz <laniewski.bartozzz@gmail.com> (http://laniewski.me/)",
-    "license"       : "MIT",
-
-    "main"          : "dist/index.js",
-
-    "repository" : {
-        "type" : "git",
-        "url"  : "https://github.com/Bartozzz/call-dir.git"
+    "name": "call-dir",
+    "version": "0.0.2",
+    "keywords": [
+        "callback",
+        "directory",
+        "require",
+        "load",
+        "multiple",
+        "files"
+    ],
+    "description": "Loads files from a directory and executes a callback for each",
+    "author": "Łaniewski Bartosz <laniewski.bartozzz@gmail.com> (http://laniewski.me/)",
+    "license": "MIT",
+    "main": "dist/index.js",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Bartozzz/call-dir.git"
     },
-
-    "bugs" : {
-        "url" : "https://github.com/Bartozzz/call-dir/issues"
+    "bugs": {
+        "url": "https://github.com/Bartozzz/call-dir/issues"
     },
-
-    "devDependencies" : {
-        "babel"                             : "^6.5.2",
-        "babel-cli"                         : "^6.10.1",
-        "babel-preset-es2015"               : "^6.9.0",
-        "babel-preset-stage-0"              : "^6.5.0",
-        "babel-plugin-add-module-exports"   : "^0.2.1"
+    "devDependencies": {
+        "babel": "^6.23.0",
+        "babel-cli": "^6.26.0",
+        "babel-preset-es2015": "^6.24.1",
+        "babel-preset-stage-0": "^6.24.1",
+        "babel-plugin-add-module-exports": "^0.2.1"
     },
-
-    "scripts" : {
-        "clean"      : "rm -rf dist",
-        "build"      : "babel src -d dist",
-        "watch"      : "babel src -d dist -w",
-        "prepublish" : "npm run clean && npm run build"
+    "scripts": {
+        "clean": "rm -rf dist",
+        "build": "babel src -d dist",
+        "watch": "babel src -d dist -w",
+        "prepare": "npm run clean && npm run build"
     }
 }
