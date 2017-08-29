@@ -1,5 +1,7 @@
 # call-dir
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/Bartozzz/call-dir.svg)](https://greenkeeper.io/)
+
 Loads files from a directory and executes a callback for each.
 
 ## Installation
