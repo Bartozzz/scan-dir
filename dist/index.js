@@ -21,7 +21,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @param   {function}  callback    - callback to execute on each file
  */
 exports.default = function (directory, callback) {
-  _fs2.default.readdirSync(directory).filter(function (file) {
+  _fs2.default.readdirSync(_path2.default.resolve(process.cwd(), directory)).filter(function (file) {
     return file.indexOf(".") !== 0;
   }).forEach(function (file) {
     return callback(_path2.default.join(directory, file), file);

@@ -8,7 +8,7 @@ import path from "path";
  * @param   {function}  callback    - callback to execute on each file
  */
 export default ( directory, callback ) => {
-    fs.readdirSync( directory )
-        .filter(  file => file.indexOf( "." ) !== 0 )
+    fs.readdirSync( path.resolve( process.cwd(), directory ) )
+        .filter( file => file.indexOf( "." ) !== 0 )
         .forEach( file => callback( path.join( directory, file ), file ) );
 };
