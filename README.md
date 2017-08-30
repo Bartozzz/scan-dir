@@ -2,7 +2,7 @@
   <h1>call-dir</h1>
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/Bartozzz/call-dir.svg)](https://greenkeeper.io/)
-[![Build Status](https://img.shields.io/travis/Bartozzz/call-dir.svg)](https://travis-ci.org/Bartozzz/Qilin/)
+[![Build Status](https://img.shields.io/travis/Bartozzz/call-dir.svg)](https://travis-ci.org/Bartozzz/call-dir/)
 [![npm version](https://img.shields.io/npm/v/call-dir.svg)](https://www.npmjs.com/package/call-dir)
 [![npm downloads](https://img.shields.io/npm/dt/call-dir.svg)](https://www.npmjs.com/package/call-dir)
   <br>
