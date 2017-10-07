@@ -28,7 +28,7 @@ load( "./path/to/stuff", ( path, filename ) => {
     console.log( `Found file: ${filename} (absolute path: ${path})` );
 } );
 
-// You can load multiple modules easily:
+// You can initialize modules from a directory easily:
 load( "./models", path => require( path )( some, variables, ...here ) );
 load( "./routes", path => require( path )( some, variables, ...here ) );
 ```
