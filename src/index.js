@@ -1,14 +1,19 @@
+// @flow
+
 import fs from "fs";
 import path from "path";
 
 /**
- * Loads files from a `directory` and executes a `callback` for each.
+ * Load files from a `directory` and execute a `callback` for each.
  *
- * @param   {string}    directory   - directory to load files from
- * @param   {function}  callback    - callback to execute on each file
+ * @param   {string}    directory   directory to load files from
+ * @param   {function}  callback    callback to execute on each file
+ * @return  {void}
  */
-export default (directory, callback) => {
+function call(directory: string, callback: (string, string) => any): void {
     fs.readdirSync(path.resolve(process.cwd(), directory))
         .filter((file) => file.indexOf(".") !== 0)
         .forEach((file) => callback(path.join(directory, file), file));
-};
+}
+
+export default call;
