@@ -32,3 +32,9 @@ load("./path/to/stuff", (path, filename) => {
 load("./models", path => require(path)(some, variables, ...here));
 load("./routes", path => require(path)(some, variables, ...here));
 ```
+
+## Tests
+
+```bash
+$ npm test
+```
