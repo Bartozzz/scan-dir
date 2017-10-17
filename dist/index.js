@@ -17,11 +17,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 /**
  * Load files from a `directory` and execute a `callback` for each.
  *
- * @param   {string}    directory   directory to load files from
- * @param   {function}  callback    callback to execute on each file
+ * @param   {string}    directory   Directory to load files from
+ * @param   {function}  callback    Callback to execute on each file
  * @return  {void}
  */
-function call(directory, callback) {
+function callDir(directory, callback) {
   _fs2.default.readdirSync(_path2.default.resolve(process.cwd(), directory)).filter(function (file) {
     return file.indexOf(".") !== 0;
   }).forEach(function (file) {
@@ -29,5 +29,5 @@ function call(directory, callback) {
   });
 }
 
-exports.default = call;
+exports.default = callDir;
 module.exports = exports["default"];

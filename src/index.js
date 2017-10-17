@@ -1,5 +1,4 @@
 // @flow
-
 import fs from "fs";
 import path from "path";
 
@@ -12,8 +11,8 @@ import path from "path";
  */
 function callDir(directory: string, callback: (string, string) => void): void {
     fs.readdirSync(path.resolve(process.cwd(), directory))
-        .filter((file) => file.indexOf(".") !== 0)
-        .forEach((file) => callback(path.join(directory, file), file));
+        .filter((file: string) => file.indexOf(".") !== 0)
+        .forEach((file: string) => callback(path.join(directory, file), file));
 }
 
 export default callDir;

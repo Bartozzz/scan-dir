@@ -19,7 +19,9 @@ $ npm install call-dir
 
 ## Usage
 
-`load(path: string, callback: (path: string, filename: string) => void): void`
+```javascript
+load(path: string, callback: (path: string, filename: string) => void): void
+```
 
 ```javascript
 import load from "call-dir";
