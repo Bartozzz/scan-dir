@@ -20,7 +20,7 @@
         "url": "https://github.com/Bartozzz/call-dir/issues"
     },
     "devDependencies": {
-        "flow-bin": "^0.68.0",
+        "flow-bin": "^0.69.0",
         "babel": "^6.23.0",
         "babel-cli": "^6.26.0",
         "babel-eslint": "^8.0.1",
