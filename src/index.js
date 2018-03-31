@@ -12,7 +12,7 @@ import path from "path";
  */
 function callDir(
     directory: string,
-    callback: (string, string) => void,
+    callback: (path: string, filename: string) => void,
     recursive: bool = false
 ): void {
     fs.readdirSync(path.resolve(process.cwd(), directory))
@@ -26,7 +26,7 @@ function callDir(
                 return callDir(filePath, callback, recursive);
             }
 
-            // Execute callback onyl for files with an extension
+            // Execute callback onle for files with an extension
             if (filePath.indexOf(".") !== 0) {
                 return callback(filePath, file);
             }
