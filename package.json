@@ -1,11 +1,16 @@
 {
   "name": "call-dir",
-  "version": "1.1.0",
-  "keywords": ["require", "directory", "files", "fs", "import", "autoloader"],
-  "description":
-    "Loads files from a directory and executes a callback for each",
-  "author":
-    "Łaniewski Bartosz <laniewski.bartozzz@gmail.com> (http://laniewski.me/)",
+  "version": "1.2.1",
+  "keywords": [
+    "require",
+    "directory",
+    "files",
+    "fs",
+    "import",
+    "autoloader"
+  ],
+  "description": "Loads files from a directory and executes a callback for each",
+  "author": "Łaniewski Bartosz <laniewski.bartozzz@gmail.com> (http://laniewski.me/)",
   "license": "MIT",
   "main": "dist/index.js",
   "repository": {
