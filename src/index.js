@@ -31,4 +31,14 @@ function load(dir: string, callback: callback, recursive: bool = false): void {
         });
 }
 
+/**
+ * @param   {string}    dir         Directory to load files from
+ * @param   {Function}  callback    Callback to execute on each file
+ * @return  {void}
+ */
+function loadAll(dir: string, callback: callback): void {
+    load(dir, callback, true);
+}
+
 export default load;
+export {loadAll};
