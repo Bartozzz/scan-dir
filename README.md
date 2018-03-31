@@ -8,7 +8,7 @@
 [![npm downloads](https://img.shields.io/npm/dt/call-dir.svg)](https://www.npmjs.com/package/call-dir)
   <br>
 
-**call-dir** loads files from a directory and executes a callback for each one. Directory path is relative to the current working directory (`process.cwd()`). All dot files and files without extension are ignored.
+**call-dir** looks for files in a directory and executes a callback for each one. All dot files and files without extension are ignored. Supports deep-loading files from sub-folders. Can be used as an autoloader for JavaScript.
 </div>
 
 ## Installation
@@ -20,20 +20,19 @@ $ npm install call-dir
 ## Usage
 
 ```javascript
-load(
-    path: string,
-    callback: (path: string, filename: string) => void,
-    recursive: bool = false
-): void
+import load, {loadAll} from "call-dir";
+
+load(path, callback[, recursive]);
+loadAll(path, callback);
 ```
 
-### Basic example:
+### Basic loading example
 
 ```javascript
-import load from "call-dir";
+import load, {loadAll} from "call-dir";
 
 load("./path/to/stuff", (path, filename) => {
-    console.log(`Found file: ${filename} (absolute path: ${path})`);
+  console.log(`Found file: ${filename} (absolute path: ${path})`);
 });
 
 // You can initialize modules from a directory easily:
@@ -41,16 +40,18 @@ load("./models", path => require(path)(some, variables, ...here));
 load("./routes", path => require(path)(some, variables, ...here));
 ```
 
-### Recursive example:
+### Deep loading example
 
 ```javascript
-import load from "call-dir";
+import load, {loadAll} from "call-dir";
 
-load("./node_modules", (path, filename) => {
-    if (filename === "package.json") {
-        // …
-    }
-}, true);
+function callback(path, filename) {
+  // …
+}
+
+loadAll("./node_modules", callback);
+// … equivalent to:
+load("./node_modules", callback, true);
 ```
 
 ## Tests
