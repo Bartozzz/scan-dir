@@ -1,8 +1,9 @@
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
+exports.loadAll = undefined;
 
 var _fs = require("fs");
 
@@ -17,31 +18,40 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 /**
  * Load files from a `directory` and execute a `callback` for each.
  *
- * @param   {string}    directory   Directory to load files from
- * @param   {Function}  callback    Callback to execute on each file
+ * @param   {string}    dir         Directory to load files from
+ * @param   {Function}  cb          Callback to execute on each file
  * @param   {bool}      recursive   Whether parse directories recursively
  * @return  {void}
  */
-function callDir(directory, callback) {
-    var recursive = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+function load(dir, cb) {
+  var recursive = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
 
-    _fs2.default.readdirSync(_path2.default.resolve(process.cwd(), directory)).filter(function (file) {
-        return !/(^|\/)\.[^\/\.]/g.test(file);
-    }).forEach(function (file) {
-        var filePath = _path2.default.join(directory, file);
-        var fileStat = _fs2.default.statSync(filePath);
+  _fs2.default.readdirSync(_path2.default.resolve(process.cwd(), dir)).filter(function (file) {
+    return !/(^|\/)\.[^/.]/g.test(file);
+  }).forEach(function (file) {
+    var filePath = _path2.default.join(dir, file);
+    var fileStat = _fs2.default.statSync(filePath);
 
-        // Parses directories recursively if enabled
-        if (fileStat.isDirectory() && recursive) {
-            return callDir(filePath, callback, recursive);
-        }
+    // Parses directories recursively if enabled
+    if (fileStat.isDirectory()) {
+      return recursive && load(filePath, cb, recursive);
+    }
 
-        // Execute callback onyl for files with an extension
-        if (filePath.indexOf(".") !== 0) {
-            return callback(filePath, file);
-        }
-    });
+    // Executes callback for files with extension
+    if (filePath.indexOf(".") !== 0) {
+      return cb(filePath, file);
+    }
+  });
 }
 
-exports.default = callDir;
-module.exports = exports["default"];
+/**
+ * @param   {string}    dir         Directory to load files from
+ * @param   {Function}  cb          Callback to execute on each file
+ * @return  {void}
+ */
+function loadAll(dir, cb) {
+  load(dir, cb, true);
+}
+
+exports.default = load;
+exports.loadAll = loadAll;

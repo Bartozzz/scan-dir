@@ -2,35 +2,44 @@
 import fs from "fs";
 import path from "path";
 
+type callback = (path: string, filename: string) => void;
+
 /**
  * Load files from a `directory` and execute a `callback` for each.
  *
- * @param   {string}    directory   Directory to load files from
- * @param   {Function}  callback    Callback to execute on each file
+ * @param   {string}    dir         Directory to load files from
+ * @param   {Function}  cb          Callback to execute on each file
  * @param   {bool}      recursive   Whether parse directories recursively
  * @return  {void}
  */
-function callDir(
-    directory: string,
-    callback: (string, string) => void,
-    recursive: bool = false
-): void {
-    fs.readdirSync(path.resolve(process.cwd(), directory))
-        .filter((file: string) => !(/(^|\/)\.[^\/\.]/g).test(file))
-        .forEach((file: string) => {
-            const filePath = path.join(directory, file);
-            const fileStat = fs.statSync(filePath);
+function load(dir: string, cb: callback, recursive: boolean = false): void {
+  fs
+    .readdirSync(path.resolve(process.cwd(), dir))
+    .filter((file: string) => !/(^|\/)\.[^/.]/g.test(file))
+    .forEach((file: string) => {
+      const filePath = path.join(dir, file);
+      const fileStat = fs.statSync(filePath);
 
-            // Parses directories recursively if enabled
-            if (fileStat.isDirectory() && recursive) {
-                return callDir(filePath, callback, recursive);
-            }
+      // Parses directories recursively if enabled
+      if (fileStat.isDirectory()) {
+        return recursive && load(filePath, cb, recursive);
+      }
 
-            // Execute callback onyl for files with an extension
-            if (filePath.indexOf(".") !== 0) {
-                return callback(filePath, file);
-            }
-        });
+      // Executes callback for files with extension
+      if (filePath.indexOf(".") !== 0) {
+        return cb(filePath, file);
+      }
+    });
 }
 
-export default callDir;
+/**
+ * @param   {string}    dir         Directory to load files from
+ * @param   {Function}  cb          Callback to execute on each file
+ * @return  {void}
+ */
+function loadAll(dir: string, cb: callback): void {
+  load(dir, cb, true);
+}
+
+export default load;
+export { loadAll };
