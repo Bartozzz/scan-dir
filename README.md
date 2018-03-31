@@ -6,9 +6,10 @@
 [![License](https://img.shields.io/github/license/Bartozzz/call-dir.svg)](LICENSE)
 [![npm version](https://img.shields.io/npm/v/call-dir.svg)](https://www.npmjs.com/package/call-dir)
 [![npm downloads](https://img.shields.io/npm/dt/call-dir.svg)](https://www.npmjs.com/package/call-dir)
-  <br>
+<br>
 
 **call-dir** looks for files in a directory and executes a callback for each one. All dot files and files without extension are ignored. Supports deep-loading files from sub-folders. Can be used as an autoloader for JavaScript.
+
 </div>
 
 ## Installation

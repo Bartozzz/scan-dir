@@ -1,10 +1,4 @@
 {
-    "presets" : [
-        "flow",
-        "es2015"
-    ],
-
-    "plugins" : [
-        "add-module-exports"
-    ]
+  "presets": ["env", "flow"],
+  "plugins": ["add-module-exports"]
 }
