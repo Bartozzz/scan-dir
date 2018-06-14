@@ -19,7 +19,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * Load files from a `directory` and execute a `callback` for each.
  *
  * @param   {string}    dir         Directory to load files from
- * @param   {Function}  cb          Callback to execute on each file
+ * @param   {callback}  cb          Callback to execute on each file
  * @param   {bool}      recursive   Whether parse directories recursively
  * @return  {void}
  */
