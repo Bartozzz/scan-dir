@@ -1,11 +1,16 @@
 {
   "name": "call-dir",
   "version": "1.2.1",
-  "keywords": ["require", "directory", "files", "fs", "import", "autoloader"],
-  "description":
-    "Loads files from a directory and executes a callback for each",
-  "author":
-    "Łaniewski Bartosz <laniewski.bartozzz@gmail.com> (http://laniewski.me/)",
+  "keywords": [
+    "require",
+    "directory",
+    "files",
+    "fs",
+    "import",
+    "autoloader"
+  ],
+  "description": "Loads files from a directory and executes a callback for each. All dot files and files without extension are ignored. Supports deep-loading.",
+  "author": "Łaniewski Bartosz <laniewski.bartozzz@gmail.com> (https://laniewski.me/)",
   "license": "MIT",
   "main": "dist/index.js",
   "repository": {
@@ -17,24 +22,24 @@
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.0",
-    "babel-eslint": "^8.2.2",
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^8.2.3",
     "babel-plugin-add-module-exports": "^0.2.1",
-    "babel-preset-env": "^1.6.1",
+    "babel-preset-env": "^1.7.0",
     "babel-preset-flow": "^6.23.0",
     "chai": "^4.1.2",
     "eslint": "^4.19.1",
     "eslint-config-prettier": "^2.9.0",
     "eslint-config-standard": "^11.0.0",
-    "eslint-plugin-flowtype": "^2.46.1",
-    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-flowtype": "^2.49.3",
+    "eslint-plugin-import": "^2.12.0",
     "eslint-plugin-node": "^6.0.1",
     "eslint-plugin-prettier": "^2.6.0",
-    "eslint-plugin-promise": "^3.7.0",
-    "eslint-plugin-standard": "^3.0.1",
-    "flow-bin": "^0.67.1",
-    "mocha": "^5.0.5",
-    "prettier": "^1.11.1"
+    "eslint-plugin-promise": "^3.8.0",
+    "eslint-plugin-standard": "^3.1.0",
+    "flow-bin": "^0.74.0",
+    "mocha": "^5.2.0",
+    "prettier": "^1.13.5"
   },
   "scripts": {
     "test": "npm run test:eslint && npm run test:flow && npm run test:mocha",
