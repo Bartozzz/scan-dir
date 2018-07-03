@@ -1,4 +1,4 @@
 {
-  "presets": ["env", "flow"],
+  "presets": [["env", {"modules": false}], "flow"],
   "plugins": ["add-module-exports"]
 }
