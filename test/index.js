@@ -53,7 +53,7 @@ describe("call-dir", () => {
     });
   });
 
-  describe("loadAll(path, callback)", function() {
+  describe("loadAll(directory, callback)", function() {
     it("should execute callback for each file (recursive)", function() {
       let results = {};
       let iterations = 0;
