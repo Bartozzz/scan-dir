@@ -12,10 +12,10 @@ type callback = (path: string, filename: string) => void;
  * @param   {bool}      recursive   Whether parse directories recursively
  * @return  {void}
  */
-function load(dir: string, cb: callback, recursive: boolean = false): void {
+function load(dir: string, cb: callback, recursive: boolean = false) {
   fs.readdirSync(path.resolve(process.cwd(), dir))
-    .filter((file: string) => !/(^|\/)\.[^/.]/g.test(file))
-    .forEach((file: string) => {
+    .filter(file => !/(^|\/)\.[^/.]/g.test(file))
+    .forEach(file => {
       const filePath = path.join(dir, file);
       const fileStat = fs.statSync(filePath);
 

@@ -9,8 +9,11 @@
     "import",
     "autoloader"
   ],
-  "description": "Loads files from a directory and executes a callback for each. All dot files and files without extension are ignored. Supports deep-loading.",
-  "author": "Łaniewski Bartosz <laniewski.bartozzz@gmail.com> (https://laniewski.me/)",
+  "engines": {
+    "node": ">=8.12.0"
+  },
+  "description": "Loads files from a directory and executes a callback for each. All symlinks, dot files and files without extension are ignored. Supports deep-loading.",
+  "author": "Łaniewski Bartosz <bartosz@laniewski.me> (https://laniewski.me/)",
   "license": "MIT",
   "main": "dist/index.js",
   "repository": {
@@ -21,34 +24,36 @@
     "url": "https://github.com/Bartozzz/call-dir/issues"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.3",
+    "@babel/cli": "^7.0.0",
+    "@babel/core": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/preset-flow": "^7.0.0",
+    "@babel/register": "^7.0.0",
     "babel-eslint": "^10.0.1",
     "babel-plugin-add-module-exports": "^1.0.0",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-flow": "^6.23.0",
-    "chai": "^4.1.2",
-    "eslint": "^5.0.1",
+    "chai": "^4.2.0",
+    "eslint": "^5.6.1",
     "eslint-config-prettier": "^3.0.1",
     "eslint-config-standard": "^12.0.0",
-    "eslint-plugin-flowtype": "^2.49.3",
-    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-flowtype": "^2.50.3",
+    "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-node": "^7.0.1",
     "eslint-plugin-prettier": "^3.0.0",
     "eslint-plugin-promise": "^4.0.0",
-    "eslint-plugin-standard": "^3.1.0",
-    "flow-bin": "^0.82.0",
+    "eslint-plugin-standard": "^4.0.0",
+    "flow-bin": "^0.83.0",
     "mocha": "^5.2.0",
-    "prettier": "^1.13.5"
+    "prettier": "^1.14.3",
+    "rimraf": "2.6.2"
   },
   "scripts": {
     "test": "npm run test:eslint && npm run test:flow && npm run test:mocha",
-    "test:flow": "flow",
-    "test:mocha": "mocha --require babel-core/register",
-    "test:eslint": "eslint --fix src",
-    "clean": "rm -rf dist",
-    "build": "babel src -d dist",
-    "watch": "babel src -d dist -w",
-    "prepare": "npm run clean && npm run test && npm run build"
+    "test:flow": "npx flow",
+    "test:mocha": "npx mocha --require @babel/register",
+    "test:eslint": "npx eslint --fix src",
+    "clean": "npx rimraf dist",
+    "build": "npx babel src -d dist",
+    "watch": "npx babel src -d dist -w",
+    "prepare": "npm run clean && npm run build && npm run test"
   }
 }
