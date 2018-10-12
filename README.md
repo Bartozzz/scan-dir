@@ -8,7 +8,7 @@
 [![npm downloads](https://img.shields.io/npm/dt/call-dir.svg)](https://www.npmjs.com/package/call-dir)
 <br>
 
-**call-dir** looks for files in a directory and executes a callback for each one. All dot files and files without extension are ignored. Supports deep-loading files from sub-folders. Can be used as an autoloader for JavaScript.
+**call-dir** searches for files in a directory and executes a callback for each. All symlinks, dotfiles and files without extension are ignored. Supports deep-loading. Can be used as an autoloader for JavaScript.
 
 </div>
 
@@ -21,38 +21,41 @@ $ npm install call-dir
 ## Usage
 
 ```javascript
-import load, {loadAll} from "call-dir";
+import load, { loadAll } from "call-dir";
 
-load(path, callback[, recursive]);
-loadAll(path, callback);
+load(directory, callback);
+loadAll(directory, callback);
 ```
 
-### Basic loading example
+### Example: Basic loading
 
 ```javascript
-import load, {loadAll} from "call-dir";
+import path from "path";
+import load, { loadAll } from "call-dir";
 
-load("./path/to/stuff", (path, filename) => {
-  console.log(`Found file: ${filename} (absolute path: ${path})`);
+const models = path.resolve(__dirname, "./path/to/models");
+const routes = path.resolve(__dirname, "./path/to/routes");
+
+load(models, (fpath, fname) => {
+  console.log(`Found file: ${fname} (absolute path: ${fpath})`);
 });
 
 // You can initialize modules from a directory easily:
-load("./models", path => require(path)(some, variables, ...here));
-load("./routes", path => require(path)(some, variables, ...here));
+load(models, fpath => require(fpath)(some, variables, ...here));
+load(routes, fpath => require(fpath)(some, variables, ...here));
 ```
 
-### Deep loading example
+### Example: Deep loading
 
 ```javascript
-import load, {loadAll} from "call-dir";
+import path from "path";
+import load, { loadAll } from "call-dir";
 
-function callback(path, filename) {
-  // …
-}
+const modules = path.resolve(__dirname, "../node_modules");
 
-loadAll("./node_modules", callback);
-// … equivalent to:
-load("./node_modules", callback, true);
+// Those two calls are equivalents:
+loadAll(modules, (fpath, fname) => /* … */);
+load(modules, (fpath, fname) => /* … */, true);
 ```
 
 ## Tests
