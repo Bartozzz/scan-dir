@@ -1,91 +1,76 @@
-import chai  from "chai";
-import {resolve} from "path";
-import load, {loadAll} from "../src/";
+import chai from "chai";
+import { resolve } from "path";
+import load, { loadAll } from "../dist/";
 
-describe("call-dir", function () {
-    const expect = chai.expect;
-    const dir = resolve(__dirname, "./demo");
+describe("call-dir", () => {
+  const expect = chai.expect;
+  const dir = resolve(__dirname, "./demo");
 
-    describe("load(path, callback)", function () {
-        it("should execute callback for each file", function (done) {
-            load(resolve(dir, "./deep"), function (path, filename) {
-                expect(filename).to.equal("d.js");
-                expect(path).to.equal(resolve(dir, "./deep/d.js"));
+  describe("load(directory, callback)", () => {
+    it("should execute callback for a valid file", done => {
+      load(resolve(dir, "./foo"), function(fpath, fname) {
+        expect(fname).to.equal("d.js");
+        expect(fpath).to.equal(resolve(dir, "./foo/d.js"));
 
-                done();
-            });
-        });
-
-        it("should ignore dot files", function (done) {
-            let results = {};
-            let iterations = 0;
-
-            function test() {
-                expect(results).to.deep.equal({
-                    "b.js": resolve(__dirname, "./demo/b.js"),
-                    "c.js": resolve(__dirname, "./demo/c.js"),
-                });
-
-                done();
-            }
-
-            load(dir, function (path, filename) {
-                results[filename] = path;
-
-                if (++iterations === 2) {
-                    test();
-                }
-            });
-        });
+        done();
+      });
     });
 
-    describe("load(path, callback, true)", function () {
-        it("should execute callback for each file (recursive)", function () {
-            let results = {};
-            let iterations = 0;
+    it("should execute callback for each file in directory", done => {
+      let results = {};
+      let iterations = 0;
 
-            function test() {
-                expect(results).to.deep.equal({
-                    "b.js": resolve(__dirname, "./demo/b.js"),
-                    "c.js": resolve(__dirname, "./demo/c.js"),
-                    "d.js": resolve(__dirname, "./demo/deep/d.js"),
-                });
+      load(dir, function(fpath, fname) {
+        results[fname] = fpath;
 
-                done();
-            }
+        if (++iterations === 2) {
+          expect(results).to.deep.equal({
+            "b.js": resolve(__dirname, "./demo/b.js"),
+            "c.js": resolve(__dirname, "./demo/c.js")
+          });
 
-            load(dir, function (path, filename) {
-                results[filename] = path;
-
-                if (++iterations === 3) {
-                    test();
-                }
-            });
-        });
+          done();
+        }
+      });
     });
 
-    describe("loadAll(path, callback)", function () {
-        it("should execute callback for each file (recursive)", function () {
-            let results = {};
-            let iterations = 0;
+    it("should ignore symlinks", done => {
+      load(resolve(dir, "./bar"), function(fpath, fname) {
+        done(`Should ignore ${fname}`);
+      });
 
-            function test() {
-                expect(results).to.deep.equal({
-                    "b.js": resolve(__dirname, "./demo/b.js"),
-                    "c.js": resolve(__dirname, "./demo/c.js"),
-                    "d.js": resolve(__dirname, "./demo/deep/d.js"),
-                });
-
-                done();
-            }
-
-            load(dir, function (path, filename) {
-                results[filename] = path;
-
-                if (++iterations === 3) {
-                    test();
-                }
-            });
-        });
+      // Assumes that `load` should take less than 250ms to find any file:
+      setTimeout(done, 250);
     });
+
+    it("should ignore dotfiles", done => {
+      load(resolve(dir, "./bar"), function(fpath, fname) {
+        done(`Should ignore ${fname}`);
+      });
+
+      // Assumes that `load` should take less than 250ms to find any file:
+      setTimeout(done, 250);
+    });
+  });
+
+  describe("loadAll(path, callback)", function() {
+    it("should execute callback for each file (recursive)", function() {
+      let results = {};
+      let iterations = 0;
+
+      load(dir, function(fpath, fname) {
+        results[fname] = fpath;
+
+        if (++iterations === 3) {
+          expect(results).to.deep.equal({
+            "b.js": resolve(__dirname, "./demo/b.js"),
+            "c.js": resolve(__dirname, "./demo/c.js"),
+            "d.js": resolve(__dirname, "./demo/foo/d.js")
+          });
+
+          done();
+        }
+      });
+    });
+  });
 });

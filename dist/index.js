@@ -13,39 +13,58 @@ var _path = _interopRequireDefault(require("path"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
- * Load files from a `directory` and execute a `callback` for each.
+ * Searches for files in `directory` and execute a `callback` for each.
  *
- * @param   {string}    dir         Directory to load files from
- * @param   {callback}  cb          Callback to execute on each file
- * @param   {bool}      recursive   Whether parse directories recursively
+ * @param   {string}    directory   Directory to search for files from
+ * @param   {Callback}  callback    Callback to execute on each found file
+ * @param   {boolean}   deep        Whether parse directories recursively
  * @return  {void}
  */
-function load(dir, cb, recursive = false) {
-  _fs.default.readdirSync(_path.default.resolve(process.cwd(), dir)).filter(file => !/(^|\/)\.[^/.]/g.test(file)).forEach(file => {
-    const filePath = _path.default.join(dir, file);
+function load(directory, callback, deep = false) {
+  const normalizedPath = _path.default.normalize(directory);
 
-    const fileStat = _fs.default.statSync(filePath); // Parses directories recursively if enabled
-
-
-    if (fileStat.isDirectory()) {
-      return recursive && load(filePath, cb, recursive);
-    } // Executes callback for files with extension
-
-
-    if (filePath.indexOf(".") !== 0) {
-      return cb(filePath, file);
+  _fs.default.readdir(_path.default.resolve(process.cwd(), normalizedPath), (err, files) => {
+    if (err) {
+      // NOTE: maybe we should handle err in a different way?
+      return;
     }
+
+    files.filter(fname => !/(^|\/)\.[^/.]/g.test(fname)).forEach(fname => {
+      const fpath = _path.default.join(normalizedPath, fname); // NOTE: fs.lstat would be better if we don't want to ignore symlinks
+
+
+      _fs.default.stat(fpath, (err, fstat) => {
+        // 1. If we search files recursively, we should ignore insecure symlinks
+        //    that point to a parent directory to prevent overflow.
+        // 2. If a developers uses this module with user-input, we probably want
+        //    to ignore the symlinks too.
+        if (err || fstat.isSymbolicLink()) {
+          // NOTE: maybe we should handle err in a different way?
+          return;
+        } // Parses directories recursively if enabled:
+
+
+        if (fstat.isDirectory()) {
+          return deep && load(fpath, callback, deep);
+        } // Ignores files without extension:
+
+
+        if (fpath.indexOf(".") !== 0) {
+          return callback(fpath, fname);
+        }
+      });
+    });
   });
 }
 /**
- * @param   {string}    dir         Directory to load files from
- * @param   {Function}  cb          Callback to execute on each file
+ * @param   {string}    directory   Directory to search for files from
+ * @param   {Callback}  callback    Callback to execute on each found file
  * @return  {void}
  */
 
 
-function loadAll(dir, cb) {
-  load(dir, cb, true);
+function loadAll(directory, callback) {
+  load(directory, callback, true);
 }
 
 var _default = load;

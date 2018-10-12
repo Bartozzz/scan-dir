@@ -12,7 +12,7 @@
   "engines": {
     "node": ">=8.12.0"
   },
-  "description": "Loads files from a directory and executes a callback for each. All symlinks, dot files and files without extension are ignored. Supports deep-loading.",
+  "description": "Searches for files in a directory and executes a callback for each. All insecure symlinks, dot files and files without extension are ignored.",
   "author": "Łaniewski Bartosz <bartosz@laniewski.me> (https://laniewski.me/)",
   "license": "MIT",
   "main": "dist/index.js",
