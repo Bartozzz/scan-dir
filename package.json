@@ -47,13 +47,15 @@
     "rimraf": "3.0.2"
   },
   "scripts": {
+    "pretest": "npm run prepare",
     "test": "npm run test:eslint && npm run test:flow && npm run test:mocha",
     "test:flow": "npx flow",
     "test:mocha": "npx mocha --require @babel/register",
-    "test:eslint": "npx eslint --fix src",
+    "test:eslint": "npx eslint src",
     "clean": "npx rimraf dist",
+    "prebuild": "npm run clean",
     "build": "npx babel src -d dist",
     "watch": "npx babel src -d dist -w",
-    "prepare": "npm run clean && npm run build && npm run test"
+    "prepare": "npm run build"
   }
 }
