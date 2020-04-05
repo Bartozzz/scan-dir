@@ -16,6 +16,7 @@
   "author": "Łaniewski Bartosz <bartosz@laniewski.me> (https://laniewski.me/)",
   "license": "MIT",
   "main": "dist/index.js",
+  "types": "dist",
   "repository": {
     "type": "git",
     "url": "https://github.com/Bartozzz/call-dir.git"
@@ -26,12 +27,15 @@
   "devDependencies": {
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.0",
+    "@babel/node": "7.8.7",
     "@babel/preset-env": "^7.9.0",
     "@babel/preset-flow": "^7.9.0",
     "@babel/register": "^7.9.0",
+    "@types/node": "13.11.0",
     "babel-eslint": "^10.1.0",
     "babel-plugin-add-module-exports": "^1.0.2",
     "chai": "^4.2.0",
+    "dtslint": "3.4.1",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.1",
     "eslint-config-standard": "^14.1.1",
@@ -42,19 +46,25 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
     "flow-bin": "^0.122.0",
+    "fs-extra": "9.0.0",
+    "glob": "7.1.6",
     "mocha": "^7.1.1",
     "prettier": "^2.0.2",
     "rimraf": "3.0.2"
   },
   "scripts": {
     "pretest": "npm run prepare",
-    "test": "npm run test:eslint && npm run test:flow && npm run test:mocha",
+    "test": "npm run test:eslint && npm run test:flow && npm run test:typescript && npm run test:mocha",
     "test:flow": "npx flow",
+    "test:typescript": "npx dtslint types",
     "test:mocha": "npx mocha --require @babel/register",
     "test:eslint": "npx eslint src",
+    "defs:flow": "npx babel-node ./.bin/definitions-flow.js",
+    "defs:typescript": "npx babel-node ./.bin/definitions-typescript.js",
     "clean": "npx rimraf dist",
     "prebuild": "npm run clean",
     "build": "npx babel src -d dist",
+    "postbuild": "npm run defs:flow && npm run defs:typescript",
     "watch": "npx babel src -d dist -w",
     "prepare": "npm run build"
   }
