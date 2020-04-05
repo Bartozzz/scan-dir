@@ -1,14 +1,16 @@
 <div align="center">
   <h1>call-dir</h1>
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/Bartozzz/call-dir.svg)](https://greenkeeper.io/)
-[![Build Status](https://img.shields.io/travis/Bartozzz/call-dir.svg)](https://travis-ci.org/Bartozzz/call-dir/)
-[![License](https://img.shields.io/github/license/Bartozzz/call-dir.svg)](LICENSE)
+[![Default CI/CD](https://github.com/Bartozzz/call-dir/workflows/Default%20CI/CD/badge.svg)](https://github.com/Bartozzz/call-dir/actions)
+[![Known Vulnerabilities](https://snyk.io/test/github/Bartozzz/call-dir/badge.svg?targetFile=package.json)](https://snyk.io/test/github/Bartozzz/call-dir?targetFile=package.json)
+[![npm package size](https://img.badgesize.io/Bartozzz/call-dir/master/dist/index.js?compression=gzip)](https://www.npmjs.com/package/call-dir)
 [![npm version](https://img.shields.io/npm/v/call-dir.svg)](https://www.npmjs.com/package/call-dir)
+[![npm dependency Status](https://david-dm.org/Bartozzz/call-dir.svg)](https://www.npmjs.com/package/call-dir)
 [![npm downloads](https://img.shields.io/npm/dt/call-dir.svg)](https://www.npmjs.com/package/call-dir)
+
 <br>
 
-**call-dir** searches for files in a directory and executes a callback for each. All symlinks, dotfiles and files without extension are ignored. Supports deep-loading. Can be used as an autoloader for JavaScript.
+**call-dir** searches for files in a directory and executes a callback for each. All symlinks, dotfiles and files without extension are ignored. Supports deep-loading. It can be used as an autoloader for JavaScript.
 
 </div>
 
@@ -27,7 +29,9 @@ load(directory, callback);
 loadAll(directory, callback);
 ```
 
-### Example: Basic loading
+### Examples
+
+#### Basic loading
 
 ```javascript
 import path from "path";
@@ -41,11 +45,11 @@ load(models, (fpath, fname) => {
 });
 
 // You can initialize modules from a directory easily:
-load(models, fpath => require(fpath)(some, variables, ...here));
-load(routes, fpath => require(fpath)(some, variables, ...here));
+load(models, (fpath) => require(fpath)(some, variables, ...here));
+load(routes, (fpath) => require(fpath)(some, variables, ...here));
 ```
 
-### Example: Deep loading
+#### Deep loading
 
 ```javascript
 import path from "path";
