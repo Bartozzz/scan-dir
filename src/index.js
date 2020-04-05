@@ -21,31 +21,33 @@ function load(directory: string, callback: Callback, deep: boolean = false) {
       return;
     }
 
-    files.filter(fname => !/(^|\/)\.[^/.]/g.test(fname)).forEach(fname => {
-      const fpath = path.join(normalizedPath, fname);
+    files
+      .filter((fname) => !/(^|\/)\.[^/.]/g.test(fname))
+      .forEach((fname) => {
+        const fpath = path.join(normalizedPath, fname);
 
-      // NOTE: fs.lstat would be better if we don't want to ignore symlinks
-      fs.stat(fpath, (err, fstat) => {
-        // 1. If we search files recursively, we should ignore insecure symlinks
-        //    that point to a parent directory to prevent overflow.
-        // 2. If a developers uses this module with user-input, we probably want
-        //    to ignore the symlinks too.
-        if (err || fstat.isSymbolicLink()) {
-          // NOTE: maybe we should handle err in a different way?
-          return;
-        }
+        // NOTE: fs.lstat would be better if we don't want to ignore symlinks
+        fs.stat(fpath, (err, fstat) => {
+          // 1. If we search files recursively, we should ignore insecure symlinks
+          //    that point to a parent directory to prevent overflow.
+          // 2. If a developers uses this module with user-input, we probably want
+          //    to ignore the symlinks too.
+          if (err || fstat.isSymbolicLink()) {
+            // NOTE: maybe we should handle err in a different way?
+            return;
+          }
 
-        // Parses directories recursively if enabled:
-        if (fstat.isDirectory()) {
-          return deep && load(fpath, callback, deep);
-        }
+          // Parses directories recursively if enabled:
+          if (fstat.isDirectory()) {
+            return deep && load(fpath, callback, deep);
+          }
 
-        // Ignores files without extension:
-        if (fpath.indexOf(".") !== 0) {
-          return callback(fpath, fname);
-        }
+          // Ignores files without extension:
+          if (fpath.indexOf(".") !== 0) {
+            return callback(fpath, fname);
+          }
+        });
       });
-    });
   });
 }
 
