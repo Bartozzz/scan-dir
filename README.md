@@ -17,7 +17,7 @@
 ## Installation
 
 ```bash
-$ npm install scan-dir
+$ npm install @bartozzz/scan-dir
 ```
 
 ## Usage
