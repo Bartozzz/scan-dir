@@ -12,7 +12,11 @@ type Callback = (fpath: string, fname: string) => any;
  * @param   {boolean}   deep        Whether parse directories recursively
  * @return  {void}
  */
-function load(directory: string, callback: Callback, deep: boolean = false) {
+export function scan(
+  directory: string,
+  callback: Callback,
+  deep: boolean = false
+) {
   const normalizedPath = path.normalize(directory);
 
   fs.readdir(path.resolve(process.cwd(), normalizedPath), (err, files) => {
@@ -37,14 +41,12 @@ function load(directory: string, callback: Callback, deep: boolean = false) {
             return;
           }
 
-          // Parses directories recursively if enabled:
           if (fstat.isDirectory()) {
-            return deep && load(fpath, callback, deep);
-          }
-
-          // Ignores files without extension:
-          if (fpath.indexOf(".") !== 0) {
-            return callback(fpath, fname);
+            // Parses directories recursively if enabled:
+            if (deep) scan(fpath, callback, deep);
+          } else if (fpath.indexOf(".") !== 0) {
+            // Ignores files without extension:
+            callback(fpath, fname);
           }
         });
       });
@@ -56,9 +58,8 @@ function load(directory: string, callback: Callback, deep: boolean = false) {
  * @param   {Callback}  callback    Callback to execute on each found file
  * @return  {void}
  */
-function loadAll(directory: string, callback: Callback) {
-  load(directory, callback, true);
+export function scanRecursively(directory: string, callback: Callback) {
+  scan(directory, callback, true);
 }
 
-export default load;
-export { loadAll };
+export default scan;

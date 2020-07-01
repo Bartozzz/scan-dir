@@ -1,6 +1,6 @@
 {
-  "name": "call-dir",
-  "version": "1.4.0",
+  "name": "scan-dir",
+  "version": "2.0.0",
   "keywords": [
     "require",
     "directory",
@@ -22,10 +22,10 @@
   "types": "dist",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Bartozzz/call-dir.git"
+    "url": "https://github.com/Bartozzz/scan-dir.git"
   },
   "bugs": {
-    "url": "https://github.com/Bartozzz/call-dir/issues"
+    "url": "https://github.com/Bartozzz/scan-dir/issues"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
@@ -34,9 +34,14 @@
     "@babel/preset-env": "^7.9.0",
     "@babel/preset-flow": "^7.9.0",
     "@babel/register": "^7.9.0",
+    "@commitlint/cli": "9.0.1",
+    "@commitlint/config-conventional": "9.0.1",
+    "@saithodev/semantic-release-backmerge": "1.1.1",
+    "@semantic-release/changelog": "5.0.1",
+    "@semantic-release/exec": "5.0.0",
+    "@semantic-release/git": "9.0.0",
     "@types/node": "14.0.14",
     "babel-eslint": "^10.1.0",
-    "babel-plugin-add-module-exports": "^1.0.2",
     "babel-preset-minify": "0.5.1",
     "chai": "^4.2.0",
     "dtslint": "3.6.9",
@@ -52,9 +57,11 @@
     "flow-bin": "^0.128.0",
     "fs-extra": "9.0.1",
     "glob": "7.1.6",
+    "husky": "4.2.5",
     "mocha": "^8.0.1",
     "prettier": "^2.0.2",
-    "rimraf": "3.0.2"
+    "rimraf": "3.0.2",
+    "semantic-release": "17.1.1"
   },
   "scripts": {
     "pretest": "npm run prepare",
@@ -71,5 +78,10 @@
     "postbuild": "npm run defs:flow && npm run defs:typescript",
     "watch": "npx babel src -d dist -w",
     "prepare": "npm run build"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
   }
 }

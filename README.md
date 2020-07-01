@@ -1,32 +1,32 @@
 <div align="center">
-  <h1>call-dir</h1>
+  <h1>scan-dir</h1>
 
-[![Default CI/CD](https://github.com/Bartozzz/call-dir/workflows/Default%20CI/CD/badge.svg)](https://github.com/Bartozzz/call-dir/actions)
-[![Known Vulnerabilities](https://snyk.io/test/github/Bartozzz/call-dir/badge.svg?targetFile=package.json)](https://snyk.io/test/github/Bartozzz/call-dir?targetFile=package.json)
-[![npm package size](https://img.badgesize.io/Bartozzz/call-dir/master/dist/index.js?compression=gzip)](https://www.npmjs.com/package/call-dir)
-[![npm version](https://img.shields.io/npm/v/call-dir.svg)](https://www.npmjs.com/package/call-dir)
-[![npm dependency Status](https://david-dm.org/Bartozzz/call-dir.svg)](https://www.npmjs.com/package/call-dir)
-[![npm downloads](https://img.shields.io/npm/dt/call-dir.svg)](https://www.npmjs.com/package/call-dir)
+[![Default CI/CD](https://github.com/Bartozzz/scan-dir/workflows/Default%20CI/CD/badge.svg)](https://github.com/Bartozzz/scan-dir/actions)
+[![Known Vulnerabilities](https://snyk.io/test/github/Bartozzz/scan-dir/badge.svg?targetFile=package.json)](https://snyk.io/test/github/Bartozzz/scan-dir?targetFile=package.json)
+[![npm package size](https://img.badgesize.io/Bartozzz/scan-dir/master/dist/index.js?compression=gzip)](https://www.npmjs.com/package/scan-dir)
+[![npm version](https://img.shields.io/npm/v/scan-dir.svg)](https://www.npmjs.com/package/scan-dir)
+[![npm dependency Status](https://david-dm.org/Bartozzz/scan-dir.svg)](https://www.npmjs.com/package/scan-dir)
+[![npm downloads](https://img.shields.io/npm/dt/scan-dir.svg)](https://www.npmjs.com/package/scan-dir)
 
 <br>
 
-**call-dir** searches for files in a directory and executes a callback for each. All symlinks, dotfiles and files without extension are ignored. Supports deep-loading. It can be used as an autoloader for JavaScript.
+**scan-dir** searches for files in a directory and executes a callback for each. All symlinks, dotfiles and files without extension are ignored. Supports deep-loading. It can be used as an autoloader for JavaScript.
 
 </div>
 
 ## Installation
 
 ```bash
-$ npm install call-dir
+$ npm install scan-dir
 ```
 
 ## Usage
 
 ```javascript
-import load, { loadAll } from "call-dir";
+import scan, { scanRecursively } from "scan-dir";
 
-load(directory, callback);
-loadAll(directory, callback);
+scan(directory, callback);
+scanRecursively(directory, callback);
 ```
 
 ### Examples
@@ -35,31 +35,31 @@ loadAll(directory, callback);
 
 ```javascript
 import path from "path";
-import load, { loadAll } from "call-dir";
+import scan, from "scan-dir";
 
 const models = path.resolve(__dirname, "./path/to/models");
 const routes = path.resolve(__dirname, "./path/to/routes");
 
-load(models, (fpath, fname) => {
+scan(models, (fpath, fname) => {
   console.log(`Found file: ${fname} (absolute path: ${fpath})`);
 });
 
 // You can initialize modules from a directory easily:
-load(models, (fpath) => require(fpath)(some, variables, ...here));
-load(routes, (fpath) => require(fpath)(some, variables, ...here));
+scan(models, (fpath) => require(fpath)(some, variables, ...here));
+scan(routes, (fpath) => require(fpath)(some, variables, ...here));
 ```
 
 #### Deep loading
 
 ```javascript
 import path from "path";
-import load, { loadAll } from "call-dir";
+import scan, { scanRecursively } from "scan-dir";
 
 const modules = path.resolve(__dirname, "../node_modules");
 
 // Those two calls are equivalents:
-loadAll(modules, (fpath, fname) => /* … */);
-load(modules, (fpath, fname) => /* … */, true);
+scan(modules, (fpath, fname) => /* … */, true);
+scanRecursively(modules, (fpath, fname) => /* … */);
 ```
 
 ## Tests

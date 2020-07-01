@@ -12,6 +12,6 @@
     "noEmit": true,
 
     "baseUrl": ".",
-    "paths": { "call-dir": ["."] }
+    "paths": { "scan-dir": ["."] }
   }
 }
