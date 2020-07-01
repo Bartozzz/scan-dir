@@ -1,6 +1,6 @@
 {
-  "name": "call-dir",
-  "version": "1.4.0",
+  "name": "scan-dir",
+  "version": "2.0.0",
   "keywords": [
     "require",
     "directory",
@@ -22,10 +22,10 @@
   "types": "dist",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Bartozzz/call-dir.git"
+    "url": "https://github.com/Bartozzz/scan-dir.git"
   },
   "bugs": {
-    "url": "https://github.com/Bartozzz/call-dir/issues"
+    "url": "https://github.com/Bartozzz/scan-dir/issues"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
@@ -36,7 +36,6 @@
     "@babel/register": "^7.9.0",
     "@types/node": "14.0.14",
     "babel-eslint": "^10.1.0",
-    "babel-plugin-add-module-exports": "^1.0.2",
     "babel-preset-minify": "0.5.1",
     "chai": "^4.2.0",
     "dtslint": "3.6.9",

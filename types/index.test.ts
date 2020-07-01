@@ -1,7 +1,7 @@
-import load, { loadAll } from "call-dir";
+import scan, { scanRecursively } from "scan-dir";
 
 // $ExpectType void
-load("./directory", (fpath, fname) => {
+scan("./directory", (fpath, fname) => {
   // $ExpectType string
   const filePath = fpath;
 
@@ -10,7 +10,7 @@ load("./directory", (fpath, fname) => {
 });
 
 // $ExpectType void
-loadAll("./directory", (fpath, fname) => {
+scanRecursively("./directory", (fpath, fname) => {
   // $ExpectType string
   const filePath = fpath;
 
