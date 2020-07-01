@@ -1,6 +1,9 @@
-name: Default CI/CD
+name: Tests
 
-on: [push, pull_request]
+push:
+  branches:
+    - "**"
+    - "!master"
 
 jobs:
   test:
@@ -27,7 +30,7 @@ jobs:
             ${{ runner.os }}-
 
       - name: Install node modules
-        run: npm install
+        run: npm ci
 
       - name: Test
         run: npm run test
