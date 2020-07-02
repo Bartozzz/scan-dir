@@ -1,12 +1,12 @@
 <div align="center">
   <h1>scan-dir</h1>
 
-[![Default CI/CD](https://github.com/Bartozzz/scan-dir/workflows/Default%20CI/CD/badge.svg)](https://github.com/Bartozzz/scan-dir/actions)
+![Tests](https://github.com/Bartozzz/scan-dir/workflows/Tests/badge.svg)
 [![Known Vulnerabilities](https://snyk.io/test/github/Bartozzz/scan-dir/badge.svg?targetFile=package.json)](https://snyk.io/test/github/Bartozzz/scan-dir?targetFile=package.json)
 [![npm package size](https://img.badgesize.io/Bartozzz/scan-dir/master/dist/index.js?compression=gzip)](https://www.npmjs.com/package/scan-dir)
-[![npm version](https://img.shields.io/npm/v/scan-dir.svg)](https://www.npmjs.com/package/scan-dir)
-[![npm dependency Status](https://david-dm.org/Bartozzz/scan-dir.svg)](https://www.npmjs.com/package/scan-dir)
-[![npm downloads](https://img.shields.io/npm/dt/scan-dir.svg)](https://www.npmjs.com/package/scan-dir)
+[![npm version](https://img.shields.io/npm/v/@bartozzz/scan-dir.svg)](https://www.npmjs.com/package/@bartozzz/scan-dir)
+[![npm dependency Status](https://david-dm.org/Bartozzz/@bartozzz/scan-dir.svg)](https://www.npmjs.com/package/@bartozzz/scan-dir)
+[![npm downloads](https://img.shields.io/npm/dt/@bartozzz/scan-dir.svg)](https://www.npmjs.com/package/@bartozzz/scan-dir)
 
 <br>
 
@@ -17,7 +17,7 @@
 ## Installation
 
 ```bash
-$ npm install scan-dir
+$ npm install @bartozzz/scan-dir
 ```
 
 ## Usage
