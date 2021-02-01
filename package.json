@@ -36,7 +36,7 @@
     "@babel/register": "^7.9.0",
     "@commitlint/cli": "11.0.0",
     "@commitlint/config-conventional": "11.0.0",
-    "@saithodev/semantic-release-backmerge": "1.2.0",
+    "@saithodev/semantic-release-backmerge": "1.2.1",
     "@semantic-release/changelog": "5.0.1",
     "@semantic-release/exec": "5.0.0",
     "@semantic-release/git": "9.0.0",
@@ -54,14 +54,14 @@
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^5.0.0",
-    "flow-bin": "^0.141.0",
-    "fs-extra": "9.0.1",
+    "flow-bin": "^0.143.0",
+    "fs-extra": "9.1.0",
     "glob": "7.1.6",
-    "husky": "4.3.6",
+    "husky": "4.3.8",
     "mocha": "^8.0.1",
     "prettier": "^2.0.2",
     "rimraf": "3.0.2",
-    "semantic-release": "17.3.1"
+    "semantic-release": "17.3.7"
   },
   "scripts": {
     "pretest": "npm run prepare",
