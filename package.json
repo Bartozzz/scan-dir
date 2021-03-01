@@ -30,12 +30,12 @@
   "devDependencies": {
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.0",
-    "@babel/node": "7.12.10",
+    "@babel/node": "7.13.0",
     "@babel/preset-env": "^7.9.0",
     "@babel/preset-flow": "^7.9.0",
     "@babel/register": "^7.9.0",
-    "@commitlint/cli": "11.0.0",
-    "@commitlint/config-conventional": "11.0.0",
+    "@commitlint/cli": "12.0.0",
+    "@commitlint/config-conventional": "12.0.0",
     "@saithodev/semantic-release-backmerge": "1.2.1",
     "@semantic-release/changelog": "5.0.1",
     "@semantic-release/exec": "5.0.0",
@@ -54,14 +54,14 @@
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^5.0.0",
-    "flow-bin": "^0.143.0",
+    "flow-bin": "^0.145.0",
     "fs-extra": "9.1.0",
     "glob": "7.1.6",
-    "husky": "4.3.8",
+    "husky": "5.1.1",
     "mocha": "^8.0.1",
     "prettier": "^2.0.2",
     "rimraf": "3.0.2",
-    "semantic-release": "17.3.7"
+    "semantic-release": "17.4.0"
   },
   "scripts": {
     "pretest": "npm run prepare",
